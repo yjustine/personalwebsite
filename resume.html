@@ -1,0 +1,250 @@
+<?php
+function ValidateEmail($email)
+{
+   $pattern = '/^([0-9a-z]([-.\w]*[0-9a-z])*@(([0-9a-z])+([-\w]*[0-9a-z])*\.)+[a-z]{2,6})$/i';
+   return preg_match($pattern, $email);
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['formid']) && $_POST['formid'] == 'layoutgrid1')
+{
+   $mailto = 'ycongjustineclaire@gmail.com';
+   $mailfrom = isset($_POST['email']) ? $_POST['email'] : $mailto;
+   $subject = 'Website form';
+   $message = 'Values submitted from web site form:';
+   $success_url = '';
+   $error_url = '';
+   $eol = "\n";
+   $error = '';
+   $internalfields = array ("submit", "reset", "send", "filesize", "formid", "captcha", "recaptcha_challenge_field", "recaptcha_response_field", "g-recaptcha-response", "h-captcha-response");
+   $boundary = md5(uniqid(time()));
+   $header  = 'From: '.$mailfrom.$eol;
+   $header .= 'Reply-To: '.$mailfrom.$eol;
+   $header .= 'MIME-Version: 1.0'.$eol;
+   $header .= 'Content-Type: multipart/mixed; boundary="'.$boundary.'"'.$eol;
+   $header .= 'X-Mailer: PHP v'.phpversion().$eol;
+
+   try
+   {
+      if (!ValidateEmail($mailfrom))
+      {
+         $error .= "The specified email address (" . $mailfrom . ") is invalid!\n<br>";
+         throw new Exception($error);
+      }
+      $message .= $eol;
+      $message .= "IP Address : ";
+      $message .= $_SERVER['REMOTE_ADDR'];
+      $message .= $eol;
+      foreach ($_POST as $key => $value)
+      {
+         if (!in_array(strtolower($key), $internalfields))
+         {
+            if (is_array($value))
+            {
+               $message .= ucwords(str_replace("_", " ", $key)) . " : " . implode(",", $value) . $eol;
+            }
+            else
+            {
+               $message .= ucwords(str_replace("_", " ", $key)) . " : " . $value . $eol;
+            }
+         }
+      }
+      $body  = 'This is a multi-part message in MIME format.'.$eol.$eol;
+      $body .= '--'.$boundary.$eol;
+      $body .= 'Content-Type: text/plain; charset=UTF-8'.$eol;
+      $body .= 'Content-Transfer-Encoding: 8bit'.$eol;
+      $body .= $eol.stripslashes($message).$eol;
+      if (!empty($_FILES))
+      {
+         foreach ($_FILES as $key => $value)
+         {
+             if ($_FILES[$key]['error'] == 0)
+             {
+                $body .= '--'.$boundary.$eol;
+                $body .= 'Content-Type: '.$_FILES[$key]['type'].'; name='.$_FILES[$key]['name'].$eol;
+                $body .= 'Content-Transfer-Encoding: base64'.$eol;
+                $body .= 'Content-Disposition: attachment; filename='.$_FILES[$key]['name'].$eol;
+                $body .= $eol.chunk_split(base64_encode(file_get_contents($_FILES[$key]['tmp_name']))).$eol;
+             }
+         }
+      }
+      $body .= '--'.$boundary.'--'.$eol;
+      if ($mailto != '')
+      {
+         mail($mailto, $subject, $body, $header);
+      }
+      header('Location: '.$success_url);
+   }
+   catch (Exception $e)
+   {
+      $errorcode = file_get_contents($error_url);
+      $replace = "##error##";
+      $errorcode = str_replace($replace, $e->getMessage(), $errorcode);
+      echo $errorcode;
+   }
+   exit;
+}
+?>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Yj</title>
+<meta name="generator" content="WYSIWYG Web Builder 17 - https://www.wysiwygwebbuilder.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="Justine ycong (2).png" rel="icon" sizes="398x275" type="image/png">
+<link href="Justine ycong (2).png" rel="icon" sizes="398x275" type="image/png">
+<link href="Justine ycong (2).png" rel="icon" sizes="398x275" type="image/png">
+<link href="font-awesome.min.css" rel="stylesheet">
+<link href="resume.css" rel="stylesheet">
+<link href="resume.css" rel="stylesheet">
+<script>
+function submitLayoutGrid1()
+{
+   var regexp;
+   var Editbox2 = document.getElementById('Editbox2');
+   if (!(Editbox2.disabled || Editbox2.style.display === 'none' || Editbox2.style.visibility === 'hidden'))
+   {
+      if (Editbox2.value == "")
+      {
+         alert("Please enter a value for the \"Editbox2\" field.");
+         Editbox2.focus();
+         return false;
+      }
+   }
+   var Editbox3 = document.getElementById('Editbox3');
+   if (!(Editbox3.disabled || Editbox3.style.display === 'none' || Editbox3.style.visibility === 'hidden'))
+   {
+      if (Editbox3.value == "")
+      {
+         alert("Please enter a value for the \"Editbox2\" field.");
+         Editbox3.focus();
+         return false;
+      }
+   }
+   var TextArea1 = document.getElementById('TextArea1');
+   if (!(TextArea1.disabled || TextArea1.style.display === 'none' || TextArea1.style.visibility === 'hidden'))
+   {
+      if (TextArea1.value == "")
+      {
+         alert("Please enter a value for the \"TextArea1\" field.");
+         TextArea1.focus();
+         return false;
+      }
+   }
+   return true;
+}
+</script>
+</head>
+<body>
+<div id="top">
+<div id="top_Container">
+<div id="wb_Image1">
+<a href="file:///C:/Users/SGIUSE~1/AppData/Local/Temp/preview/index.html#1"><img src="images/Justine ycong.png" id="Image1" alt="" width="193" height="107"></a></div>
+<div id="wb_IconFont1">
+<a href="./Resume_Ycong.pdf"><div id="IconFont1"><i class="fa fa-download"></i></div></a></div>
+<div id="wb_ResponsiveMenu1">
+<label class="toggle" for="ResponsiveMenu1-submenu" id="ResponsiveMenu1-title">Menu<span id="ResponsiveMenu1-icon"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span></label>
+<input type="checkbox" id="ResponsiveMenu1-submenu">
+<ul class="ResponsiveMenu1" id="ResponsiveMenu1" role="menu">
+<li role="menuitem"><a href="gallery.html">Gallery</a></li>
+<li role="menuitem"><a href="#top">Resume</a></li>
+</ul>
+</div>
+<input type="text" id="Editbox1" name="resume" value="" spellcheck="false" placeholder="click to download">
+</div>
+</div>
+<div id="wb_LayoutGrid1">
+<form name="LayoutGrid1" method="post" action="<?php echo basename(__FILE__); ?>" enctype="multipart/form-data" id="LayoutGrid1" onsubmit="return submitLayoutGrid1()">
+<input type="hidden" name="formid" value="layoutgrid1">
+<div class="row">
+<div class="col-1">
+<div id="wb_Text1">
+<p style="font-size:37px;font-weight:bold;">&nbsp;</p>
+<p style="font-size:37px;font-weight:bold;"><span style="background-color:#000000;">Work Experience</span></p>
+<p style="font-size:37px;font-weight:bold;">&nbsp;</p>
+<p style="font-family:Tahoma;font-size:20px;line-height:26.4px;"><span style="background-color:#000000;font-size:21px;">Service crew </span><span style="background-color:#000000;font-family:Palatino Linotype;">•</span><span style="background-color:#000000;"> McDoland's </span><span style="background-color:#000000;font-family:Palatino Linotype;">•</span><span style="background-color:#000000;"> 2022-2023 &amp; 2018-2019</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;font-family:Tahoma;">&lt; </span><span style="background-color:#000000;">Service and prepare a delicious food to the customer. </span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt; Multi-tasker being a side-one to side-two prep.</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt; Assistant prepping while assigned in other station.</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt;Cooked and prepared food orders/ running orders from drive-thru window and front counter, ensuring quality, fast service.</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt;Performing periodic inventory </span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt;Assembled and packaged Gold box.</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;">&nbsp;</p>
+<p style="font-family:Tahoma;font-size:20px;line-height:26.4px;"><span style="background-color:#000000;font-family:Palatino Linotype;">Wait-staff •</span><span style="background-color:#000000;"> 2022</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt;Helped other kitchen-mates slicing,cook food, serve food orders from&nbsp;&nbsp;&nbsp; the customers and do other extra task like scrabbing the grill pan.</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt;Support other servers and kitchen staff by completing work such as slicing pork and beef, cleaning, and food running.</span></p>
+<p style="font-family:Tahoma;font-size:17px;line-height:26.4px;">&nbsp;</p>
+<p style="font-family:Tahoma;font-size:20px;line-height:26.4px;"><span style="background-color:#000000;font-family:Palatino Linotype;">Sales clerk •</span><span style="background-color:#000000;"> 2021</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt;Greets, and engaged customers relationship and trust for purposes of providing sales and related assistance.</span></p>
+<p style="font-family:Arial;font-size:17px;line-height:26.4px;"><span style="background-color:#000000;">&lt;Motivated to parts of sales team to provide service to exceeds the customers expectations.</span></p>
+<p style="font-family:Tahoma;font-size:20px;line-height:26.4px;"><span style="background-color:#000000;font-family:Arial;font-size:17px;">&lt;Communicates with customers knowledgeably and friendly.</span></p>
+</div>
+<div id="wb_Text2">
+<p style="font-size:37px;font-weight:bold;">&nbsp;</p>
+<p style="font-size:37px;font-weight:bold;"><span style="background-color:#000000;">Skills</span></p>
+<p style="font-family:Arial;font-size:13px;font-weight:bold;">&nbsp;</p>
+<p style="font-family:Arial;font-size:13px;font-weight:bold;">&nbsp;</p>
+<ul style="font-family:Arial;font-size:17px;list-style-type:disc;">
+<li style="margin:0 0 0 48px;"><span style="background-color:#000000;">Time Management</span>
+</li>
+<li style="margin:0 0 0 48px;"><span style="background-color:#000000;">Patience in work responsibilities</span>
+</li>
+<li style="margin:0 0 0 48px;"><span style="background-color:#000000;">Self-Confident</span>
+</li>
+<li style="margin:0 0 0 48px;"><span style="background-color:#000000;">Can work with minimum Supervision</span>
+</li>
+<li style="margin:0 0 0 48px;"><span style="background-color:#000000;">Multi-tasking </span>
+</li>
+<li style="margin:0 0 0 48px;"><span style="background-color:#000000;">Creative in Designing business products</span>
+</li>
+<li style="margin:0 0 0 48px;"><span style="background-color:#000000;">Good Communication skills </span>
+</li>
+</ul>
+<p style="font-size:37px;font-weight:bold;line-height:60px;">&nbsp;</p>
+<p style="font-size:37px;font-weight:bold;line-height:60px;"><span style="background-color:#000000;">Education</span></p>
+<p style="font-family:Arial;font-size:13px;font-weight:bold;line-height:60px;"><span style="background-color:#000000;font-size:17px;">Bachelor of Science in Graphic and Design • CTU main • Ongoing</span></p>
+<p style="font-size:37px;font-weight:bold;line-height:60px;"><span style="background-color:#000000;">Vocational Course</span></p>
+<p style="font-family:Arial;font-size:17px;font-weight:bold;line-height:60px;"><span style="background-color:#000000;">Hospitality Cake and Decorating • Bloom Cake, Banilad • 2019</span></p>
+<p style="font-family:Arial;font-size:17px;font-weight:bold;line-height:60px;">&nbsp;</p>
+<p style="font-family:Arial;font-size:17px;font-weight:bold;line-height:60px;">&nbsp;</p>
+<p style="font-family:Arial;font-size:13px;font-weight:bold;line-height:60px;">&nbsp;</p>
+</div>
+</div>
+<div class="col-2">
+<input type="text" id="Editbox2" name="Editbox2" value="" spellcheck="false" placeholder="Name">
+<input type="text" id="Editbox3" name="Editbox2" value="" spellcheck="false" placeholder="Email">
+<textarea name="TextArea1" id="TextArea1" rows="5" cols="60" spellcheck="false" placeholder="Message"></textarea>
+<input type="submit" id="Button1" name="" value="send">
+<div id="wb_Text3">
+<span style="color:#FFFFFF;font-family:'Palatino Linotype';font-size:43px;"><strong>Get in Touch</strong></span><span style="color:#FFFFFF;font-family:Arial;font-size:27px;"><strong><br><br></strong></span><span style="color:#FFFFFF;font-family:Tahoma;font-size:15px;letter-spacing:1.07px;">currently seeking graphic and design industry or any related to graphic design <br>for the internship opportunity, as a student of graphic and design <br>in the CTU main</span><span style="color:#FFFFFF;font-family:Tahoma;font-size:15px;">.<br></span>
+</div>
+<a id="Button3" href="#top">top</a>
+</div>
+</div>
+</form>
+</div>
+<div id="Layer2">
+<div id="Layer2_Container">
+</div>
+</div>
+<div id="wb_LayoutGrid9">
+<div id="LayoutGrid9">
+<div class="row">
+<div class="col-1">
+<div id="wb_Text8">
+<span style="color:#656565;font-family:Arial;font-size:13px;">© 2023 Ycong Justine</span>
+</div>
+</div>
+<div class="col-2">
+<label for="" id="Label4">Follow us:</label>
+<div id="wb_FontAwesomeIcon5">
+<a href="https://www.facebook.com/profile.php?id=100009783968782"><div id="FontAwesomeIcon5"><i class="fa fa-facebook-f"></i></div></a>
+</div>
+<div id="wb_FontAwesomeIcon9">
+<a href="https://www.instagram.com/vy_clang/"><div id="FontAwesomeIcon9"><i class="fa fa-instagram"></i></div></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

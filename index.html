@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Yj</title>
+<meta name="generator" content="WYSIWYG Web Builder 17 - https://www.wysiwygwebbuilder.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="Justine ycong (2).png" rel="icon" sizes="398x275" type="image/png">
+<link href="Justine ycong (2).png" rel="icon" sizes="398x275" type="image/png">
+<link href="font-awesome.min.css" rel="stylesheet">
+<link href="website.css" rel="stylesheet">
+<link href="index.css" rel="stylesheet">
+<script src="jquery-3.6.0.min.js"></script>
+<script src="jquery.scrollify.min.js"></script>
+<script>
+function submitmessage()
+{
+   var regexp;
+   var Editbox2 = document.getElementById('Editbox2');
+   if (!(Editbox2.disabled || Editbox2.style.display === 'none' || Editbox2.style.visibility === 'hidden'))
+   {
+      if (Editbox2.value == "")
+      {
+         alert("Please enter a value for the \"email\" field.");
+         Editbox2.focus();
+         return false;
+      }
+   }
+   var Editbox1 = document.getElementById('Editbox1');
+   if (!(Editbox1.disabled || Editbox1.style.display === 'none' || Editbox1.style.visibility === 'hidden'))
+   {
+      if (Editbox1.value == "")
+      {
+         alert("Please enter a value for the \"Name\" field.");
+         Editbox1.focus();
+         return false;
+      }
+   }
+   var TextArea1 = document.getElementById('TextArea1');
+   if (!(TextArea1.disabled || TextArea1.style.display === 'none' || TextArea1.style.visibility === 'hidden'))
+   {
+      if (TextArea1.value == "")
+      {
+         alert("Please enter a value for the \"message\" field.");
+         TextArea1.focus();
+         return false;
+      }
+   }
+   return true;
+}
+</script>
+<script>
+$(document).ready(function()
+{
+   $('#home,#About,#message').addClass('snap-scroll');
+   if ($(window).width() >= 480)
+   {
+      $.scrollify(
+      {
+         section: ".snap-scroll",
+         setHeights: false,
+         scrollbars: false,
+         scrollSpeed: 1000,
+         easing: 'linear',
+         afterRender: function()
+         {
+            $('#SnapScroll1 a').on('click', $.scrollify.move);
+         },
+         before: function(i, sections)
+         {
+            var href = ($('.snap-scroll').index(sections[i])+1);
+            $('#SnapScroll1 .active').removeClass('active');
+            $('#SnapScroll1').find("a[href='#" + href + "']").addClass('active');
+         }
+      });
+   }
+   $('#home,#About,#message').addClass('snap-scroll');
+   if ($(window).width() >= 480)
+   {
+      $.scrollify(
+      {
+         section: ".snap-scroll",
+         setHeights: false,
+         scrollbars: false,
+         scrollSpeed: 1000,
+         easing: 'linear',
+         afterRender: function()
+         {
+            $('#SnapScroll2 a').on('click', $.scrollify.move);
+         },
+         before: function(i, sections)
+         {
+            var href = ($('.snap-scroll').index(sections[i])+1);
+            $('#SnapScroll2 .active').removeClass('active');
+            $('#SnapScroll2').find("a[href='#" + href + "']").addClass('active');
+         }
+      });
+   }
+   $('#home,#About,#message').addClass('snap-scroll');
+   if ($(window).width() >= 480)
+   {
+      $.scrollify(
+      {
+         section: ".snap-scroll",
+         setHeights: false,
+         scrollbars: false,
+         scrollSpeed: 1000,
+         easing: 'linear',
+         afterRender: function()
+         {
+            $('#SnapScroll3 a').on('click', $.scrollify.move);
+         },
+         before: function(i, sections)
+         {
+            var href = ($('.snap-scroll').index(sections[i])+1);
+            $('#SnapScroll3 .active').removeClass('active');
+            $('#SnapScroll3').find("a[href='#" + href + "']").addClass('active');
+         }
+      });
+   }
+});
+</script>
+</head>
+<body>
+<div id="home">
+<div id="home_Container">
+<div id="wb_Image1">
+<img src="images/Justine ycong.png" id="Image1" alt="" width="204" height="114"></div>
+<a id="Button2" href="#message">Get in Touch</a>
+<ul id="SnapScroll1">
+<li><a class="active" href="#1"><span class="label">home</span></a></li>
+<li><a href="#2"><span class="label">About</span></a></li>
+<li><a href="#3"><span class="label">Message</span></a></li>
+</ul>
+<div id="wb_Image3">
+<img src="images/Justine ycong (3).png" id="Image3" alt="" width="555" height="555"></div>
+<div id="wb_Text1">
+<span style="background-color:#000000;color:#FFFFFF;font-family:Arial;font-size:20px;"><strong>Let's turn your website<br>into a tourist place for your <br>dream career<br></strong></span><span style="color:#000000;font-family:Arial;font-size:27px;"><strong>&nbsp;&nbsp;&nbsp; <br></strong></span><span style="background-color:#000000;color:#FFFFFF;font-family:Arial;font-size:19px;">C O N N E C T - Y O U R S E L F + O T H E R S</span><span style="background-color:#000000;color:#FFFFFF;font-family:Arial;font-size:27px;"><br><br></span></div>
+<div id="wb_ResponsiveMenu1">
+<label class="toggle" for="ResponsiveMenu1-submenu" id="ResponsiveMenu1-title">Menu<span id="ResponsiveMenu1-icon"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span></label>
+<input type="checkbox" id="ResponsiveMenu1-submenu">
+<ul class="ResponsiveMenu1" id="ResponsiveMenu1" role="menu">
+<li role="menuitem"><a href="gallery.html">Gallery</a></li>
+<li role="menuitem"><a href="resume.html">Resume</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="About">
+<div id="About_Container">
+<ul id="SnapScroll2">
+<li><a class="active" href="#1"><span class="label">home</span></a></li>
+<li><a href="#2"><span class="label">About</span></a></li>
+<li><a href="#3"><span class="label">Message</span></a></li>
+</ul>
+<div id="wb_Image4">
+<a href="./Resume_Ycong.pdf"><img src="images/kj.png" id="Image4" alt="" width="47" height="47"></a></div>
+<div id="wb_IconFont3">
+<a href="./Resume_Ycong.pdf"><div id="IconFont3"><i class="fa fa-file-powerpoint-o"></i></div></a></div>
+<div id="wb_IconFont4">
+<a href="https://docs.google.com/spreadsheets/d/1azFnXIMAa1nGq3HSBf2Q8VvPPZOG0yXSNtCQaQ-blkA/edit?fbclid=IwAR3UWtg4A5wik-ltXEtZ-xnBkq5Lqln5IvX_3kIQEjgXRmEerg2NR2V-800#gid=0"><div id="IconFont4"><i class="fa fa-file-excel-o"></i></div></a></div>
+<div id="wb_Image6">
+<a href="https://online.fliphtml5.com/caaie/muop/?fbclid=IwAR2MUsMuz0W9ehXtfcxmsBEXbvrVEa5kZgCq-1Qo6uCy5x5jNjkY7MFa2-c#p=1"><img src="images/gun-PhotoRoom.png-PhotoRoom.png" id="Image6" alt="" width="48" height="40"></a></div>
+<div id="wb_Image5">
+<a href="https://fliphtml5.com/caaie/svjp?fbclid=IwAR2tCTfMGuBOggdMh9xv3IoCzMijXRkdGya8q1GuDSV9ZhZ6Ry86nddNd5c"><img src="images/Canva_icon_2021.svg.png" id="Image5" alt="" width="38" height="38"></a></div>
+<div id="wb_Image2">
+<img src="images/Justine ycong (4).png" id="Image2" alt="" width="495" height="396"></div>
+<div id="wb_Text2">
+<span style="color:#FFFFFF;font-family:'Palatino Linotype';font-size:35px;"><strong>Who is Ycong?</strong></span><span style="color:#FFFFFF;font-family:Arial;font-size:13px;"><br><br></span><span style="color:#FFFFFF;font-family:Tahoma;font-size:13px;">Justine Ycong is a Graphic Designer and an artist from the Cebu City of the Philippines.<br><br>With 5 years of resilience experience across multiple<br>industries - tournaments, vocational courses, and trying hard to bring<br>beginner - Ycong has seen shitty, and is eager to learn new <br>things and to be their someone's shoes.<br><br>Ycong love to learn with people who have expertise and have innovative people, best<br>thing is to be trained well to be a future Procreate. While you're here, make sure no judgment because the beginner trying herself, say hi instead. If you're interested just get along with!<br><strong><br></strong></span></div>
+<div id="wb_Text5">
+<span style="color:#FFFFFF;font-family:Georgia;font-size:21px;"><strong><em>Core Expertise:</em></strong></span></div>
+</div>
+</div>
+<form name="message" method="post" action="<?php echo basename(__FILE__); ?>" enctype="multipart/form-data" id="message" onsubmit="return submitmessage()">
+<input type="hidden" name="formid" value="message">
+<div id="message_Container">
+<ul id="SnapScroll3">
+<li><a class="active" href="#1"><span class="label">home</span></a></li>
+<li><a href="#2"><span class="label">About</span></a></li>
+<li><a href="#3"><span class="label">Message</span></a></li>
+</ul>
+<input type="text" id="Editbox2" name="email" value="" spellcheck="false" placeholder="E-mail">
+<input type="submit" id="Button1" name="" value="send">
+<div id="wb_Text3">
+<span style="color:#FFFFFF;font-family:'Palatino Linotype';font-size:35px;"><strong>Get in Touch</strong></span><span style="color:#FFFFFF;font-family:Arial;font-size:27px;"><strong><br><br></strong></span><span style="color:#FFFFFF;font-family:Tahoma;font-size:17px;letter-spacing:1.07px;">currently seeking graphic and design industry or any <br>related to graphic design for the internship opportunity, as a student of graphic and design <br>in the CTU main</span><span style="color:#FFFFFF;font-family:Tahoma;font-size:17px;">.<br></span></div>
+<input type="text" id="Editbox1" name="Name" value="" spellcheck="false" placeholder="Name">
+<textarea name="message" id="TextArea1" rows="3" cols="33" spellcheck="false" placeholder="Message"></textarea>
+<a id="Button3" href="#home">top</a>
+</div>
+</form>
+<div id="wb_footer">
+<div id="footer">
+<div class="row">
+<div class="col-1">
+<div id="wb_Text4">
+<span style="color:#656565;font-family:Arial;font-size:13px;">© 2023 Ycong Justine</span>
+</div>
+</div>
+<div class="col-2">
+<label for="" id="Label1">Follow us:</label>
+<div id="wb_IconFont1">
+<a href="https://www.facebook.com/profile.php?id=100009783968782"><div id="IconFont1"><i class="fa fa-facebook-f"></i></div></a>
+</div>
+<div id="wb_IconFont2">
+<a href="https://www.instagram.com/vy_clang/"><div id="IconFont2"><i class="fa fa-instagram"></i></div></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
